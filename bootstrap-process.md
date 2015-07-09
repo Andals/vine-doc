@@ -10,8 +10,8 @@
 
 # 使用方法
 
-1. 定义一个自己的bootstrap类，继承自\Vine\Bootstrap
-2. 实现以init开头的protected方法，参数为\Vine\Loader
+1. 定义一个自己的bootstrap类，继承自\Vine\Framework\Bootstrap
+2. 实现以init开头的protected方法，参数为\Vine\Framework\Loader
 
 # 示例
 
@@ -22,9 +22,9 @@ namespace Vdemo\Bootstrap;
 /**
     * This is front bootstrap
  */
-class Front extends \Vine\Bootstrap
+class Front extends \Vine\Framework\Bootstrap
 {/*{{{*/
-    protected function initView($loader)
+    protected function initView(\Vine\Framework\Loader $loader)
     {/*{{{*/
         $view = new \Vine\View\Smarty();
         $view->setViewRoot(\Vdemo\ServerConf::getViewRoot());
