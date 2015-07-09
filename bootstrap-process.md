@@ -4,7 +4,7 @@
 
 - 注册自己的路由器
 - 注册自己的reques及response
-- - 注册使用自己的view
+- 注册使用自己的view
 
 等等
 
@@ -24,7 +24,7 @@ namespace Vdemo\Bootstrap;
  */
 class Front extends \Vine\Bootstrap
 {/*{{{*/
-    public function initView($loader)
+    protected function initView($loader)
     {/*{{{*/
         $view = new \Vine\View\Smarty();
         $view->setViewRoot(\Vdemo\ServerConf::getViewRoot());
