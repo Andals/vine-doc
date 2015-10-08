@@ -5,7 +5,6 @@
 因为vine框架高度支持组件化，所以，你也可以使用其他第三方提供的日志组件（例如：`Monolog`）为你的项目提供其他日志方面的支持。
 
 ## 日志级别设定
--------------------------
 
 日志级别遵照[psr-3](http://www.php-fig.org/psr/psr-3/)标准中关于日志的级别设定部分。
 因此，我们的日志组件也根据[RFC 5424](http://tools.ietf.org/html/rfc5424)中的情况提供8个级别的错误信息，分别是：
@@ -23,7 +22,7 @@ emergency, alert, critical, error, warning, notice, info and debug。
 ```
 
 ## 组件目录结构
--------------------------
+
 ```
 Log
 ├── Formater                      //日志内容格式，如某条日志以日期开头等
@@ -39,27 +38,27 @@ Log
 ```
 
 ## 使用方法
--------------------------
+
 ### 关于生成日志文件
 根据传入参数值的不同，日志文件的后缀名称也会不相同，以便用于更好的统计和分析日志。
 目前支持三种`日志文件`名字的记录后缀：
-0. `\Vine\Component\Log\Writer\File::SPLIT_NO`，按照`创建时文件的名字`进行记录；
-1. `\Vine\Component\Log\Writer\File::SPLIT_BY_DAY`，按照`天`为后缀进行记录；
-2. `\Vine\Component\Log\Writer\File::SPLIT_BY_HOUR`，按照`小时`为后缀进行记录。
+- `\Vine\Component\Log\Writer\File::SPLIT_NO`，按照`创建时文件的名字`进行记录；
+- `\Vine\Component\Log\Writer\File::SPLIT_BY_DAY`，按照`天`为后缀进行记录；
+- `\Vine\Component\Log\Writer\File::SPLIT_BY_HOUR`，按照`小时`为后缀进行记录。
 
 ### 关于记录日志级别
 如果在项目中设置较多级别的不同日志记录，日志文件只会记录`大于等于`调用时的级别信息，默认级别为 `INFO`。
 例如：调用时使用的级别为 `\Psr\Log\LogLevel::ERROR`，那么只会记录 `ERROR`、`CRITICAL`、`ALERT`、`EMERGENCY`级别的日志信息。
 
 ## 返回结果
--------------------------
+
 如果不设定任何返回格式，在日志文件中，单条记录将会按照
 `[年-月-日 小时-分钟-秒]    访客IP地址    -    日志级别    日志内容`
 的格式进行返回，其中分隔符为`\t`。
 
 
 ## 示例
--------------------------
+
 ### 代码部分
 ```
 $filePath = '/tmp/test.log';
