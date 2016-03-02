@@ -1,15 +1,18 @@
 # 配置路由
 
+框架支持自定义路由的配置，具体示例如下：
+
+##自定义路由
+在BootStrap的Boot方法中添加对应的init方法，如下：
 ```
-框架支持自定义路由的实现，具体方式为在BootStrap的Boot方法中添加对应的init方法，如下：
 public function boot(\Vine\Component\Container\Web $container)
 {/*{{{*/
-        $this->initView($container);
         $this->initRouter($container);
 }/*}}}*/
-
+```
 添加一个initRouter的方法，下边是示例的实现：
 
+```
 private function initRouter($container)
 {/*{{{*/
     $router = new \Vine\Component\Routing\Router();
@@ -20,7 +23,9 @@ private function initRouter($container)
 
     $container->setRouter($router);
 }/*}}}*/
+```
 我们需要实现的是自己的Rule和Route，Rule代表匹配规则，我们可以自己定义规则，Route代表路由到的路径，Rule的interface定义如下：
+```
 interface RuleInterface
 {/*{{{*/
     /** 
@@ -31,8 +36,10 @@ interface RuleInterface
      */
     public function match(\Vine\Component\Http\RequestInterface $request, \Vine\Component\Routing\Route\RouteInterface $route);
 }/*}}}*/
+```
 我们实现自己的match逻辑，基于request去修改route。
 比如我们想实现短连接的路由，将请求/l/xxxxx定向到Pc/feed?feedid=xxxxx示例如下：
+```
 class Live implements \Vine\Component\Routing\Rule\RuleInterface
 {/*{{{*/
     private $regexList = array(
@@ -53,5 +60,15 @@ class Live implements \Vine\Component\Routing\Rule\RuleInterface
         return false;
     }/*}}}*/
 }
+```
 
+我们可以将一些参数通过setActionArgs传入route然后在调用action的时候可以传入，我们需要在action的参数列表中写上需要传递的参数。
+```
+public function feedAction($feedId = 0)
+{
+        if ($feedId === 0) {
+            $feedId = $this->request->getUrl()->getQueryParameter('feedid');
+        } 
+        ...
+}
 ```
