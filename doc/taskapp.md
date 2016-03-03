@@ -9,7 +9,7 @@
 ### 执行示例
 
 ```
-ligang@vbox01 ~/devspace/vine-demo/src/run/task $ ./index.php demo print id=1 name=foo
+ligang@vbox01 ~ $ /home/ligang/devspace/vine-demo/src/run/task/index.php demo print id=1 name=foo
 array(2) {
     ["id"]=>
     int(1)
